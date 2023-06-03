@@ -32,10 +32,10 @@ export function Home() {
 
       </View>
 
-      <Participant />
-      <Participant />
-      <Participant />
-      <Participant />
+      <Participant name='Sextouuuu!!!' />
+      <Participant name='Sabadouuu!!!' />
+      <Participant name='Domingouu!!!' />
+      <Participant name='Segundouu!!!' />
 
     </View>
   );

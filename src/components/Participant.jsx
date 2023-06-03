@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-export function Participant() {
+export function Participant({ name }) {
   return (
     <View style={styles.container} >
       <Text style={styles.name} >
-        Sextouuuuu!!!!
+        {name}
       </Text>
 
       <TouchableOpacity
