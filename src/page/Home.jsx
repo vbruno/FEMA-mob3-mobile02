@@ -1,11 +1,28 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { Participant } from "../components/Participant";
 
 export function Home() {
+  /**
+   * Estrutura básica do useSate
+   * const [1param, 2param] = useState()
+   */
+
+  const [listParticipant, setListParticipant] = useState(["Fulano", "Fulane", "João", "Maria", "Ana", "Onix"])
+
 
   function handleParticipantAdd() {
     console.log("Nossa Função esta funcionando!");
+  }
+
+  function handleParticipantRemove(nome) {
+    console.log(`Vou remover ${nome}`);
   }
 
   return (
@@ -13,7 +30,7 @@ export function Home() {
       <Text style={styles.titleEvent}>Nome do Evento</Text>
       <Text style={styles.dateEvent}>Sexta, 2 de junho de 2023</Text>
 
-      <View style={styles.form} >
+      <View style={styles.form}>
         <TextInput
           style={styles.input}
           placeholder="Nome do participante..."
@@ -25,18 +42,14 @@ export function Home() {
           style={styles.button}
           onPress={handleParticipantAdd}
         >
-          <Text style={styles.buttonText} >
-            +
-          </Text>
+          <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
-
       </View>
 
-      <Participant name='Sextouuuu!!!' />
-      <Participant name='Sabadouuu!!!' />
-      <Participant name='Domingouu!!!' />
-      <Participant name='Segundouu!!!' />
-
+      <Participant name="Fulano" participantRemove={() => handleParticipantRemove('Fulano')} />
+      <Participant name="João" participantRemove={() => handleParticipantRemove("João")} />
+      <Participant name="Paulo" participantRemove={() => handleParticipantRemove("Paulo")} />
+      <Participant name="Maria" participantRemove={() => handleParticipantRemove("Maria")} />
     </View>
   );
 }
@@ -58,8 +71,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   form: {
-    width: '100%',
-    flexDirection: 'row',
+    width: "100%",
+    flexDirection: "row",
     marginTop: 36,
     marginBottom: 42,
     gap: 7,
@@ -67,9 +80,9 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 56,
-    backgroundColor: '#1f1e25',
+    backgroundColor: "#1f1e25",
     borderRadius: 5,
-    color: '#fff',
+    color: "#fff",
     padding: 16,
     fontSize: 16,
   },
@@ -77,12 +90,12 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 5,
-    backgroundColor: '#31cf67',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#31cf67",
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 24,
-  }
+  },
 });
