@@ -1,10 +1,13 @@
 import {
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+
+import { useState } from "react";
 
 import { Participant } from "../components/Participant";
 
@@ -14,7 +17,7 @@ export function Home() {
    * const [1param, 2param] = useState()
    */
 
-  const [listParticipant, setListParticipant] = useState(["Fulano", "Fulane", "João", "Maria", "Ana", "Onix"])
+  const [listParticipant, setListParticipant] = useState(["Fulano", "Fulane", "João", "AveMaria", "Maria1", "Maria2", "Maria3", "Maria4", "Maria5", "Maria6", "Maria7", "Ana", "Onix"])
 
 
   function handleParticipantAdd() {
@@ -46,10 +49,23 @@ export function Home() {
         </TouchableOpacity>
       </View>
 
-      <Participant name="Fulano" participantRemove={() => handleParticipantRemove('Fulano')} />
-      <Participant name="João" participantRemove={() => handleParticipantRemove("João")} />
-      <Participant name="Paulo" participantRemove={() => handleParticipantRemove("Paulo")} />
-      <Participant name="Maria" participantRemove={() => handleParticipantRemove("Maria")} />
+      <FlatList
+        data={listParticipant}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => (
+          <Participant
+            key={item}
+            name={item}
+            participantRemove={() => handleParticipantRemove(item)}
+          />
+        )}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={() => {
+          <Text style={styles.listEmptyText}>
+            Ninguém chegou no evento ainda? Adicione participante a sua lista de presença.
+          </Text>
+        }}
+      />
     </View>
   );
 }
@@ -98,4 +114,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 24,
   },
+  listEmptyText: {
+    color: '#fff',
+    fontSize: 14,
+    textAlign: 'center'
+  }
 });
