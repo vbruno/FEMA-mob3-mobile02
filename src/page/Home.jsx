@@ -19,14 +19,14 @@ export function Home() {
    */
 
   const [input, setinput] = useState('bruno')
-  const [listParticipant, setListParticipant] = useState(["Fulano", "Fulane", "João", "AveMaria", "Ana", "Onix"])
+  const [listParticipant, setListParticipant] = useState(["Fulane"])
 
 
   function handleParticipantAdd(participant) {
     if (listParticipant.includes(participant)) {
-      console.log('já existente!')
+      Alert.alert('Ohhhh.... Mané esse nené, já está na lista!!!')
     } else {
-      console.log('Não existente');
+      setListParticipant((prevState) => [...prevState, participant]);
     }
   }
 
