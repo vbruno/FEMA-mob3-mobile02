@@ -1,4 +1,5 @@
 import {
+  Alert,
   FlatList,
   StyleSheet,
   Text,
@@ -17,15 +18,27 @@ export function Home() {
    * const [1param, 2param] = useState()
    */
 
-  const [listParticipant, setListParticipant] = useState(["Fulano", "Fulane", "João", "AveMaria", "Maria1", "Maria2", "Maria3", "Maria4", "Maria5", "Maria6", "Maria7", "Ana", "Onix"])
+  const [input, setinput] = useState('bruno')
+  const [listParticipant, setListParticipant] = useState(["Fulano", "Fulane", "João", "AveMaria", "Ana", "Onix"])
 
 
-  function handleParticipantAdd() {
-    console.log("Nossa Função esta funcionando!");
+  function handleParticipantAdd(participant) {
+    if (listParticipant.includes(participant)) {
+      console.log('já existente!')
+    } else {
+      console.log('Não existente');
+    }
   }
 
-  function handleParticipantRemove(nome) {
-    console.log(`Vou remover ${nome}`);
+  function handleParticipantRemove(participant) {
+    Alert.alert("Remover", `Remover o participante ${participant}`, [
+      {
+        text: 'sim',
+        onPress: () => Alert.alert('Eliminado!!')
+      }, {
+        text: 'não',
+        onPress: () => Alert.alert('Mudei de Ideia')
+      }])
   }
 
   return (
@@ -43,7 +56,7 @@ export function Home() {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.button}
-          onPress={handleParticipantAdd}
+          onPress={() => handleParticipantAdd(input)}
         >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
