@@ -18,15 +18,18 @@ export function Home() {
    * const [1param, 2param] = useState()
    */
 
-  const [input, setinput] = useState('bruno')
+  const [nameParticipant, setNameParticipant] = useState('')
+
   const [listParticipant, setListParticipant] = useState(["Fulane"])
 
 
   function handleParticipantAdd(participant) {
-    if (listParticipant.includes(participant)) {
+
+    if (listParticipant.includes(participant.trim())) {
       Alert.alert('Ohhhh.... Mané esse nené, já está na lista!!!')
     } else {
-      setListParticipant((prevState) => [...prevState, participant]);
+      // const str2 = str.charAt(0).toUpperCase() + str.slice(1);
+      setListParticipant((prevState) => [...prevState, participant.charAt(0).toUpperCase() + participant.slice(1)]);
     }
   }
 
@@ -51,12 +54,14 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante..."
           placeholderTextColor={"#6b6b6b"}
+          onChangeText={setNameParticipant}
+          value={nameParticipant}
         />
 
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.button}
-          onPress={() => handleParticipantAdd(input)}
+          onPress={() => handleParticipantAdd(nameParticipant)}
         >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
