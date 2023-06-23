@@ -18,9 +18,9 @@ export function Home() {
    * const [1param, 2param] = useState()
    */
 
+  const [listParticipant, setListParticipant] = useState(["Fulane"])
   const [nameParticipant, setNameParticipant] = useState('')
 
-  const [listParticipant, setListParticipant] = useState(["Fulane"])
 
 
   function handleParticipantAdd(participant) {
@@ -37,7 +37,9 @@ export function Home() {
     Alert.alert("Remover", `Remover o participante ${participant}`, [
       {
         text: 'sim',
-        onPress: () => Alert.alert('Eliminado!!')
+        onPress: () => {
+          setListParticipant(prevState => prevState.filter(participantName => participantName !== participant))
+        }
       }, {
         text: 'não',
         onPress: () => Alert.alert('Mudei de Ideia')
